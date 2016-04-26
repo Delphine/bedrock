@@ -1,0 +1,452 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+@fadedPrimary: #bee1f5;
+
+// overrides
+html,
+body {
+    background: @mozIDBlue;
+    color: #fff;
+    height: 100%;
+}
+
+#outer-wrapper {
+    background: @mozIDBlue;
+}
+
+#wrapper {
+    padding-bottom: 0;
+    width: 100%;
+}
+
+h1,
+h2,
+h3 {
+    color: #fff;
+    text-shadow: none;
+}
+
+h1 {
+    .font-size(84px);
+    line-height: 1.1;
+}
+
+h2 {
+    .font-size(32px);
+    line-height: 1.2;
+}
+
+h3,
+h4 {
+    .font-size(28px);
+    line-height: 1.2;
+}
+
+#colophon {
+    background-color: @mozIDBlue;
+    color: #fff;
+
+    a:link,
+    a:visited {
+        color: @fadedPrimary;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: #fff;
+    }
+
+    .logo a {
+        background-repeat: no-repeat;
+        .at2x('/media/img/sandstone/footer-mozilla-white.png', 93px, 24px);
+    }
+}
+
+html[lang^="en"] .button-flat-dark {
+    text-transform: none;
+}
+
+@media only screen and (max-width: @breakDesktop) {
+    h1 {
+        .font-size(60px);
+    }
+
+    h2 {
+        .font-size(24px);
+    }
+
+    h3,
+    h4 {
+        .font-size(20px);
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+    h1 {
+        .font-size(36px);
+    }
+
+    h2 {
+        .font-size(20px);
+    }
+
+    h3,
+    h4 {
+        .font-size(18px);
+    }
+}
+
+// general
+.container {
+    margin: 0 auto;
+    width: @widthDesktop - (@gridGutterWidth * 2);
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: @widthMobileLandscape - @gridGutterWidth;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: @widthMobile - @gridGutterWidth;
+    }
+}
+
+// intro
+#header-logo {
+    @media only screen and (max-width: @breakTablet) {
+        width: 117px;
+        height: 122px;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: 100px;
+        height: 104px;
+    }
+}
+
+#intro {
+    .at2x('/media/img/firefox/ios/testflight/devices.png', 939px, 232px);
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    margin-top: @baseLine;
+    padding-bottom: 312px;
+    text-align: center;
+
+    h2 {
+        color: @fadedPrimary;
+        margin-bottom: @baseLine * 2;
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        .background-size(700px 174px);
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        .background-size(299px 75px);
+        background-image: url('/media/img/firefox/ios/testflight/devices-mobile.png');
+        padding-bottom: 135px;
+
+        // hide page header on mobile after form submission
+        &.submitted #intro-header {
+            display: none;
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) and (-webkit-min-device-pixel-ratio: 1.5),
+           only screen and (max-width: @breakTablet) and (min--moz-device-pixel-ratio: 1.5),
+           only screen and (max-width: @breakTablet) and (-o-min-device-pixel-ratio: 1.5),
+           only screen and (max-wdith: @breakTablet) and (min-resolution: 1.5dppx) {
+
+        background-image: url('/media/img/firefox/ios/testflight/devices-mobile-high-res.png');
+    }
+}
+
+// fade form elements while AJAXing
+#testflight-form.loading {
+    #form-submit-terms,
+    .testflight-fieldset {
+        .transition(opacity 0.2s ease-in-out);
+        opacity: 0.4;
+    }
+}
+
+#testflight-signup-wrapper {
+    margin: @baseLine auto 0;
+    width: 620px;
+
+    #form-submit-terms {
+        margin: 0 auto;
+        text-align: left;
+        width: 50%;
+
+        a,
+        a:active,
+        a:focus,
+        a:hover,
+        a:link
+         {
+            color: #fff;
+            text-decoration: underline;
+        }
+    }
+
+    #testflight-submit {
+        .font-size(20px);
+        width: 100%;
+    }
+
+    #id_privacy,
+    #id_terms {
+        float: left;
+        width: 20px;
+    }
+
+    .privacy-check-label,
+    .terms-check-label {
+        .clearfix();
+        display: block;
+        margin-bottom: @baseLine / 2;
+
+        .title {
+            display: block;
+            padding-left: 30px;
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: 420px;
+
+        #form-submit-terms {
+            width: 100%;
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: 300px;
+    }
+}
+
+#form-fields {
+    .flexbox();
+    .flex-wrap(wrap);
+    .justify-content(space-between);
+    margin-bottom: @baseLine;
+
+    .field {
+        flex: 0 0 300px;
+        margin: 0 auto @baseLine;
+        text-align: left;
+        width: 300px;
+
+        label {
+            .font-size(@largeFontSize);
+            margin-bottom: @baseLine / 2;
+        }
+
+        input,
+        select {
+            .border-box();
+            .font-size(@baseFontSize);
+            border: 0;
+            border-radius: 3px;
+            color: @textColorSecondary;
+            height: 40px;
+            line-height: 1;
+            max-width: 100%;
+            padding: @baseLine / 2;
+            width: 100%;
+        }
+
+        select {
+            background: #fff;
+        }
+    }
+}
+
+// improve side by side spacing for flexy browsers
+@supports (display: flex) {
+    #form-fields .field {
+        margin: 0 0 @baseLine;
+    }
+}
+
+#testflight-errors .errorlist {
+    background: #f8c7d9;
+    border-radius: 8px;
+    color: #e14164;
+    padding: 10px;
+}
+
+#email-format-wrapper {
+    margin-bottom: @baseLine / 2;
+    text-align: center;
+
+    label:first-child {
+        margin-right: @gridGutterWidth / 2;
+    }
+}
+
+#testflight-spinner {
+    bottom: 0;
+    display: none;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#testflight-form-thankyou {
+    margin-top: @baseLine;
+
+    h2 {
+        color: #fff;
+        margin-bottom: @baseLine;
+    }
+
+    p {
+        .font-size(@largeFontSize);
+        .open-sans-light();
+    }
+
+    strong {
+        .open-sans();
+        font-weight: normal;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        h2 {
+            .font-size(36px);
+        }
+
+        h3 {
+            .font-size(20px);
+        }
+    }
+}
+
+// form UI switches dramatically for mobile
+@media only screen and (max-width: @breakTablet) {
+    #form-fields {
+        border-radius: 8px;
+        display: block;
+        overflow: hidden;
+
+        .field {
+            background: #fff;
+            margin-bottom: 0;
+            width: 100%;
+
+            label {
+                .font-size(@smallFontSize);
+                color: @textColorTertiary;
+                margin-bottom: 0;
+                padding: 6px 0 0 8px;
+            }
+
+            input {
+                border-bottom: 1px solid @textColorLight;
+                border-radius: 0;
+            }
+
+            input,
+            select {
+                color: @textColorSecondary;
+            }
+        }
+    }
+
+    // enhanced UI
+    .js #form-fields {
+        .field {
+            .transition(background 0.2s ease);
+
+            // put a blue bg on container & input
+            &.focused {
+                background: @fadedPrimary;
+
+                label {
+                    color: @mozIDBlue;
+                }
+
+                input,
+                select {
+                    background: @fadedPrimary;
+                }
+            }
+
+            // put a red bg on container & input
+            &.invalid {
+                background: #f8c7d9;
+
+                label {
+                    color: #e14164;
+                }
+
+                input,
+                select {
+                    background: #f8c7d9;
+                }
+            }
+
+            // show field label (when input is not empty)
+            &.labeled label {
+                .transform(translateY(0));
+                opacity: 1;
+                visibility: visible;
+            }
+
+            label {
+                @transition: opacity 0.2s ease, transform 0.2s ease;
+                .transform(translateY(5px));
+                .transition(@transition);
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            input,
+            select {
+                &:focus {
+                    box-shadow: none;
+                    outline: 0;
+                }
+            }
+
+            input[type=email]:-moz-ui-invalid:not(output),
+            input[type=text]:-moz-ui-invalid:not(output) {
+                border-color: none;
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+// terms
+#terms-conditions {
+    background: #fff;
+    color: @textColorPrimary;
+    padding: (@baseLine * 2) 0;
+
+    h4 {
+        margin-bottom: @baseLine * 1.5;
+        text-align: center;
+    }
+
+    li {
+        margin: 0 0 (@baseLine / 4);
+    }
+
+    @media only screen and (max-width: @breakMobile) {
+        ol {
+            margin: 0 auto;
+            width: 260px;
+        }
+    }
+}

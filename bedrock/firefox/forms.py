@@ -10,6 +10,8 @@ from django.utils.encoding import smart_text
 
 from lib.l10n_utils.dotlang import _lazy as _
 
+from bedrock.newsletter.forms import NewsletterFooterForm
+
 
 class USPhoneNumberField(forms.CharField):
     """A form field that validates input as a U.S. phone number.
@@ -49,3 +51,20 @@ class SendToDeviceWidgetForm(forms.Form):
         ('android', 'android'),
         ('all', 'all'),
     ))
+
+
+class TestFlightForm(NewsletterFooterForm):
+    def __init__(self, newsletters, data=None, *args, **kwargs):
+        # send empty locale as country not required & shouldn't be auto-selected
+        super(TestFlightForm, self).__init__(newsletters, '', data, *args, **kwargs)
+
+        self.fields['first_name'].widget.attrs['required'] = 'required'
+        self.fields['first_name'].widget.attrs['data-placeholder'] = _('First name')
+
+        self.fields['last_name'].widget.attrs['required'] = 'required'
+        self.fields['last_name'].widget.attrs['data-placeholder'] = _('Last name')
+
+        self.fields['email'].widget.attrs['data-placeholder'] = _('Email')
+
+        self.fields['country'].widget.attrs.pop('required', None)
+        self.fields['country'].widget.attrs.pop('aria-required', None)
