@@ -455,6 +455,7 @@ PIPELINE_CSS = {
     },
     'firefox_new_redesign_scene1': {
         'source_filenames': (
+            'css/newsletter/fxnewsletter-subscribe.less',
             'css/firefox/new/redesign/scene1.less',
         ),
         'output_filename': 'css/firefox_new_redesign_scene1-bundle.css',

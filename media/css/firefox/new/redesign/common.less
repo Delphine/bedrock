@@ -25,7 +25,7 @@
 .inner-container,
 .launch-area,
 #benefits ul,
-.subscribe-container {
+#newsletter-subscribe > .container {
     width: @widthDesktop - (@baseLine * 2);
     margin: 0 auto;
 
@@ -144,13 +144,6 @@ main {
     p {
         color: #fff;
     }
-
-    .privacy-notice {
-        display: inline-block;
-        margin-top: @baseLine;
-        .font-size(@largeFontSize);
-        font-style: italic;
-    }
 }
 
 @-webkit-keyframes twinkle {
@@ -187,4 +180,21 @@ main {
     100% {
         opacity: 0.9;
     }
+}
+
+/* hide all download related links in the footer initially */
+.fx-footer-links.os_android,
+.fx-footer-links.os_ios,
+.fx-footer-links.os_desktop {
+    display: none;
+}
+
+/* show links based on thge current os */
+.linux .fx-footer-links.os_desktop,
+.linux.x86.x64 .fx-footer-links.os_desktop,
+.osx .fx-footer-links.os_desktop,
+.windows .fx-footer-links.os_desktop,
+.android .fx-footer-links.os_android,
+.ios .fx-footer-links.os_ios {
+    display: block;
 }
